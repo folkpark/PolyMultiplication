@@ -7,6 +7,7 @@ Overview: This program implements the divide and
 
 
 import math
+from random import randint
 from timeit import default_timer as timer
 
 
@@ -27,3 +28,13 @@ nSquared_Outfile.write("Hello Jack")
 dAndC_Outfile = open('DC.txt', 'w')
 dAndC_Outfile.write("Hello Parker")
 
+#Get some polynomials with random coefficients
+polyA = []
+a_degree = 3
+for i in range(a_degree):
+    polyA.append(randint(0,9))
+
+polyB = []
+b_degree = 3
+for j in range(b_degree):
+    polyB.append(randint(0, 9))
