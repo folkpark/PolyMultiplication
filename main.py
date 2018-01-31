@@ -10,16 +10,24 @@ from random import randint
 from timeit import default_timer as timer
 
 
+#tested successfully against WolframAlpha.com
 def nSquaredVersion(polyA, polyB):
-    polyC = []
+    #create a blank list and initialize it to zero
+    product = []
+    for q in range(0,(len(polyA)+len(polyB)-1)):
+        product.append(0)
 
-    return polyC
+    #multiply each term by every term in the other polynomial
+    for i in range(0,len(polyA)):
+        for j in range(0,len(polyB)):
+            product[i+j] = product[i+j] + (polyA[i]*polyB[j])
+    return product
 
 
 def dAndCVersion(polyA, polyB, n):
-    polyC = [] #need to remove this because of recursion
+    product = [] #need to remove this because of recursion
 
-    return polyC
+    return product
 
 #function to split a list in half
 def split(A):
@@ -42,3 +50,13 @@ for i in range(degree):
 polyB = []
 for j in range(degree):
     polyB.append(randint(0, 9))
+
+#this code prints the polynomials to the screen
+# in order to test that the functions work
+print("First polynomial: "+str(polyA).strip('[]'))
+print("Second polynomial: "+str(polyB).strip('[]'))
+product = nSquaredVersion(polyA,polyB)
+print("Product polynomial: "+str(product).strip('[]'))
+
+
+
