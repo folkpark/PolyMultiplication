@@ -9,6 +9,7 @@ https://github.com/folkpark/PolyMultiplication
 '''
 
 import math
+import operator
 from random import randint
 from timeit import default_timer as timer
 
@@ -30,20 +31,32 @@ def recPolyMult(polyA, polyB, n):
     if n==1:
         return polyA[0]*polyB[0]
     else:
-        d = math.ceil(n/2)    # Ceiling of n/2
+        d = int(math.ceil(n/2) )   # Ceiling of n/2
         aSplit = split(polyA) # split A into two sublists
         A_1 = aSplit[0]       # Assign A_1 to the left sublist
         A_2 = aSplit[1]       # Assign A_2 to the right sublist
         bSplit = split(polyB) # split B into two sublists
         B_1 = bSplit[0]       # Assign B_1 to the left sublist
         B_2 = bSplit[1]       # Assign B_2 to the right sublist
+
         R = recPolyMult(A_2, B_2, d)
         S = recPolyMult(A_1 + A_2, B_1 + B_2, d)
         T = recPolyMult(A_1, B_1, d)
 
-        recProdList[2*d] = R
-        recProdList[d] = (S - R - T)
-        recProdList[0] = T
+
+        for i in range(0,(n-1)):
+            if isinstance(T, int):
+                recProdList[i] = T
+            else:
+                recProdList[i] = T[i]
+            if isinstance(S,int) and isinstance(R,int) and isinstance(T,int):
+                recProdList[i+d] = S - R - T
+
+            if isinstance(R,int):
+                recProdList[i+(2*d)] = R
+            else:
+                recProdList[i + (2 * d)] = R[i]
+
         return recProdList
 
 #function to split a list in half
@@ -79,7 +92,7 @@ for q in range(0, (len(polyA) + len(polyB) - 1)):
     recProdList.append(0)
 
 final = recPolyMult(polyA, polyB, degree)
-
+print("Rec polynomial: "+str(final).strip('[]'))
 
 print("Program Terminating")
 
