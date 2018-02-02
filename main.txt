@@ -43,7 +43,6 @@ def recPolyMult(polyA, polyB, n):
         S = recPolyMult(A_1 + A_2, B_1 + B_2, d)
         T = recPolyMult(A_1, B_1, d)
 
-        #MATT ROCKS
 
         for i in range(0,(n-1)):
             if isinstance(T, int):
@@ -97,6 +96,7 @@ for x in range(3):
     recProdList.clear()
     for q in range(0, (len(polyA) + len(polyB) - 1)):
         recProdList.append(0)
+
     nSquared_Outfile.write("N^2 version with " + str(degree) + " runs\n")
     for p in range(5):
         begin = timer()
@@ -104,14 +104,14 @@ for x in range(3):
         end = timer()
         executionTime = (end - begin) * 1000000
         nSquared_Outfile.write(str(executionTime) + "\n")
-    '''
+
     for f in range(5):
         begin = timer()
         final = recPolyMult(polyA, polyB, degree)
         end = timer()
         executionTime = (end - begin) * 1000000
         dAndC_Outfile.write(str(executionTime) + "\n")
-    '''
+
 
 
 #final = recPolyMult(polyA, polyB, degree)
